@@ -25,14 +25,15 @@ function App() {
 			{/*<UseCallbackHook/>*/}
 			{//* для use context(easy)
 			}
-			<Context.Provider value={{
+			{/*<Context.Provider value={{
 				stateContext,
 				setStateContext
 			}}>
 				<ContextComponent/>
-			</Context.Provider>
+			</Context.Provider>*/}
 
 			{//* для use context(complex)
+			//* для useReducer
 			}
 			<AlertContext>
 				<Alert/>
