@@ -5,9 +5,12 @@ const AlertContext = React.createContext();
 //reducer
 
 const reducer = (state, action) => {
+	const toggleText =  state.text ? '' : action.text;
+	const toggleVisible = !state.visible;
     switch (action.type) {
 	    case 'show': return {...state, visible: true, text: action.text}
-	    case 'hide': return {...state, visible: false}
+	    case 'hide': return {...state, visible: false, text: ''}
+		case 'toggle': return {...state, visible: toggleVisible, text: toggleText}
 	    default: return state;
     }
 }
@@ -29,12 +32,13 @@ const AlertProvider = ({children}) => {
 	
 	const show = text => dispatch({ type: 'show', text});
 	const hide = () => dispatch({ type: 'hide' });
+	const toggle = text => dispatch({ type: 'toggle', text});
 
 	return (
 		<AlertContext.Provider value={{
 			visible: state.visible,
 			text: state.text,
-			show, hide
+			show, hide, toggle
 		}}>
 			{children}
 		</AlertContext.Provider>
